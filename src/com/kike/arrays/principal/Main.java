@@ -86,6 +86,12 @@ public class Main {
                     } else {
                         System.out.println("Los arrays no son iguales.");
                     }
+                    
+                    if (ArrayUtils.compararArraysRecursivamente(numeros, segundoArray, 0)) {
+                        System.out.println("Los arrays son iguales.");
+                    } else {
+                        System.out.println("Los arrays no son iguales.");
+                    }
                     break;
                
                 case 9:

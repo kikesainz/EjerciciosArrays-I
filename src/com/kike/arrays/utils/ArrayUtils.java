@@ -222,6 +222,22 @@ public class ArrayUtils {
         return true;
     }
 
+    // Método recursivo para comparar dos arrays
+    //Se debe llamar con la variable indice a cero
+    public static boolean compararArraysRecursivamente(int[] array1, int[] array2, int indice) {
+        // Caso base: si se ha llegado al final del array
+        if (indice == array1.length) {
+            return true;
+        }
+
+        // Comprobar si los elementos en el índice actual son diferentes
+        if (array1[indice] != array2[indice]) {
+            return false;
+        }
+
+        // Llamada recursiva con el siguiente índice
+        return compararArraysRecursivamente(array1, array2, indice + 1);
+    }
     public static void ordenarArray(int[] array) {
         int n = array.length;
         for (int i = 0; i < n-1; i++) {

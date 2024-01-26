@@ -16,7 +16,40 @@ public class ArrayUtils {
 	        suma += valor;
 	    }
 	    return suma;
-	}
+	}   
+    // Método para mostrar los elementos del array de forma recursiva
+	// 
+    public static void mostrarElementosRecursivo(int[] array, int index) {
+        // Caso base: si index es menor que cero devuelve
+        if (index < 0) {
+            return;
+        }
+        // Muestra el elemento actual
+        
+        // Llama recursivamente al método incrementando el índice
+        mostrarElementosRecursivo(array, index  - 1);
+        System.out.println(array[index]);
+    }
+    
+    public static void mostrarElementosRecursivo2(int[] array, int index) {
+        // Caso base: si index es igual a la longitud del array, termina la recursión
+        if (index == array.length) {
+            return;
+        }
+        // Muestra el elemento actual
+        System.out.println(array[index]);
+        // Llama recursivamente al método incrementando el índice
+        mostrarElementosRecursivo2(array, index + 1);
+    }
+	//llamarlo con el array.length-1
+    public static int sumaRecursiva(int[] array, int n) {
+        // Caso base: si n es 0, retorna 0
+        if (n < 0) {
+            return 0;
+        }
+        // Paso recursivo: suma el último elemento y llama a la función con n-1
+        return sumaRecursiva(array, n - 1) + array[n];
+    }
 	
     public static int encontrarMaximo(int[] array) {
         if (array == null || array.length == 0) {
@@ -32,6 +65,20 @@ public class ArrayUtils {
         return maximo;
     }
     
+    // Método para encontrar el máximo de forma recursiva
+    //hay que llamarlo con array.length - 1
+    public static int encontrarMaximo(int[] array, int n) {
+        // Caso base: si el array tiene solo un elemento, retorna ese elemento
+        if (n == 0) {
+            return array[0];
+        }
+        // Encuentra el máximo en la parte restante del array
+        int max = encontrarMaximo(array, n -1 );
+        // Compara el máximo encontrado con el elemento actual y retorna el mayor
+        return Math.max(max, array[n]);
+    }
+
+    
     public static double calcularMedia(int[] array) {
         if (array == null || array.length == 0) {
             throw new IllegalArgumentException("El array no puede estar vacío.");
@@ -42,6 +89,36 @@ public class ArrayUtils {
             suma += valor;
         }
         return (double) suma / array.length;
+    }
+    
+
+
+    // Método para calcular la media aritmética
+    public static double calcularMediaRecursiva(int[] array) {
+        if (array.length == 0) {
+            throw new IllegalArgumentException("El array no puede estar vacío");
+        }
+        int suma = sumaRecursiva(array, array.length);
+        return (double) suma / array.length;
+    }
+    
+//    En este código, el método buscarElementoRecursivo busca el elementoABuscar en el array, 
+//    comenzando desde el indice proporcionado. Si encuentra el elemento, 
+//    retorna true; si llega al final del array sin encontrarlo,
+//    retorna false. La función se llama a sí misma con el índice incrementado en 1 en cada paso, l
+//    o que le permite recorrer el array de manera recursiva. (la llamada se hace con el índice a cero.
+    
+    public static boolean buscarElementoRecursivo(int[] array, int elementoABuscar, int indice) {
+        // Caso base: si se llega al final del array sin encontrar el elemento
+        if (indice >= array.length) {
+            return false;
+        }
+        // Si el elemento actual es el que se busca, retorna true
+        if (array[indice] == elementoABuscar) {
+            return true;
+        }
+        // Llamada recursiva con el siguiente índice
+        return buscarElementoRecursivo(array, elementoABuscar, indice + 1);
     }
     public  static void buscarElemento(int[] array, Scanner scanner) {
         System.out.print("Ingresa el número que quieres buscar: ");
@@ -59,6 +136,18 @@ public class ArrayUtils {
         if (!encontrado) {
             System.out.println("Número no encontrado en el array.");
         }
+    }
+    
+    // Método para contar ocurrencias de un elemento de forma recursiva
+    public static int contarOcurrenciasRecursivo(int[] array, int elementoABuscar, int indice) {
+        // Caso base: si se llega al final del array
+        if (indice >= array.length) {
+            return 0;
+        }
+        // Comprobar si el elemento actual es el que se busca
+        int conteoEnEsteIndice = (array[indice] == elementoABuscar) ? 1 : 0;
+        // Llamada recursiva para el resto del array
+        return conteoEnEsteIndice + contarOcurrenciasRecursivo(array, elementoABuscar, indice + 1);
     }
     
     public static void contarOcurrencias(int[] array, Scanner scanner) {
@@ -86,6 +175,28 @@ public class ArrayUtils {
             fin--;
         }
         mostrarValores(array);
+    }
+    
+//    En este código, el método invertirRecursivamente toma tres parámetros: 
+//    	el array a invertir, un índice inicial (0 para empezar) y un índice final 
+//    	(longitud del array menos 1). La función se llama a sí misma, 
+//    	intercambiando los elementos en los índices inicio y fin en cada llamada, 
+//    	y luego actualizando estos índices para acercarse al centro del array. 
+//    	La recursión se detiene cuando los índices se cruzan o son iguales, 
+//    	lo que significa que se ha alcanzado o pasado el centro del array.    
+    
+    public static void invertirRecursivamente(int[] array, int inicio, int fin) {
+        // Caso base: si los índices se cruzan o son iguales, termina la recursión
+        if (inicio >= fin) {
+            return;
+        }
+        // Intercambiar los elementos
+        int temp = array[inicio];
+        array[inicio] = array[fin];
+        array[fin] = temp;
+
+        // Llamada recursiva con índices actualizados
+        invertirRecursivamente(array, inicio + 1, fin - 1);
     }
     
     public static int[] crearSegundoArray(int[] primerArray, Scanner scanner) {

@@ -42,25 +42,40 @@ public class Main {
             switch (opcion) {
                 case 1:
                     ArrayUtils.mostrarValores(numeros);
+                    ArrayUtils.mostrarElementosRecursivo(numeros, numeros.length-1);
+                    ArrayUtils.mostrarElementosRecursivo2(numeros, 0);
                     break;
                 case 2:
                     System.out.println("Suma: " + ArrayUtils.sumarElementos(numeros));
+                    System.out.println("Suma: " + ArrayUtils.sumaRecursiva(numeros, numeros.length-1));
                     break;
                 case 3:
                     System.out.println("El máximo es: " + ArrayUtils.encontrarMaximo(numeros));
+                    System.out.println("El máximo es: " + ArrayUtils.encontrarMaximo(numeros, numeros.length-1));
                     break;
                 case 4:
                     System.out.println("La media es: " + ArrayUtils.calcularMedia(numeros));
                     break;
                 case 5:
                      ArrayUtils.buscarElemento(numeros, scanner);
+                     System.out.println("Dígame número a buscar");
+                     Integer numeroABuscar = scanner.nextInt();
+                     scanner.nextLine();
+                     System.out.println(ArrayUtils.buscarElementoRecursivo(numeros, numeroABuscar, 0));
                     break;
                 case 6:
+                	
                     ArrayUtils.contarOcurrencias(numeros, scanner);
+                    System.out.println("Dígame número a buscar");
+                    Integer numeroAContarOcurrencias = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println(ArrayUtils.contarOcurrenciasRecursivo(numeros, numeroAContarOcurrencias, 0));
+       
+                    
                     break;
                 case 7:
-                	ArrayUtils.invertirArray(numeros);
-                	
+//                	ArrayUtils.invertirArray(numeros);
+                	ArrayUtils.invertirRecursivamente(numeros, 0, numeros.length-1);
                 	ArrayUtils.mostrarValores(numeros);
                     break;
                 case 8:
